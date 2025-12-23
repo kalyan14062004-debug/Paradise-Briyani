@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise Biryani - Jhargram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1200') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .location {
+            display: inline-block;
+            background: rgba(255,107,53,0.9);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff6b35;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #f7931e;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Popular Dishes */
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .dish-info {
+            padding: 1.5rem;
+        }
+
+        .dish-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .dish-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        /* Menu Section */
+        .menu-container {
+            background: #f9f9f9;
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .menu-category {
+            margin-bottom: 2rem;
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f7931e;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .menu-item:hover {
+            background: #fff5f0;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-price {
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #ff6b35;
+        }
+
+        .contact-form {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: #ff6b35;
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🍛 Paradise Biryani</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#popular">Popular Dishes</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Paradise Biryani</h1>
+            <p>Authentic Flavors, Unforgettable Taste</p>
+            <div class="location">📍 Jhargram, West Bengal</div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes -->
+    <section id="popular">
+        <h2 class="section-title">Popular Dishes</h2>
+        <div class="dishes-grid">
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500" alt="Biryani" class="dish-image">
+                <div class="dish-info">
+                    <h3>Chicken Biryani</h3>
+                    <p>Aromatic basmati rice cooked with tender chicken pieces, exotic spices, and saffron</p>
+                    <span class="price">₹120</span>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500" alt="KABAB" class="dish-image">
+                <div class="dish-info">
+                    <h3>KABAB</h3>
+                    <p>Crispy chicken  with a flavorful coating, served hot and fresh(Chef Koushik special)</p>
+                    <span class="price">₹200</span>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500" alt="Egg Roll" class="dish-image">
+                <div class="dish-info">
+                    <h3>Fried Chicken</h3>
+                    <p>Delicious Fried chicken and special sauces(Chef Nilesh special)</p>
+                    <span class="price">₹150</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="menu-container">
+            <div class="menu-category">
+                <h3>Biryani</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Biryani</span>
+                        <span class="item-price">₹120</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mutton Biryani</span>
+                        <span class="item-price">₹250</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Egg Biryani</span>
+                        <span class="item-price">₹100</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">ALU Biryani</span>
+                        <span class="item-price">₹80</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Starters</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Chap</span>
+                        <span class="item-price">₹120</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka</span>
+                        <span class="item-price">₹150</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Tikka</span>
+                        <span class="item-price">₹130</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Rolls & Wraps</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Egg Roll</span>
+                        <span class="item-price">₹50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Roll</span>
+                        <span class="item-price">₹80</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Roll</span>
+                        <span class="item-price">₹70</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Beverages</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Cold Drinks</span>
+                        <span class="item-price">₹30</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Lassi</span>
+                        <span class="item-price">₹50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mineral Water</span>
+                        <span class="item-price">₹20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <h4>Address</h4>
+                        <p>Main Road, Jhargram<br>West Bengal, India</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 62955 83250<br>+91 98323 33024</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">⏰</span>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <p>Monday - Sunday<br>11:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@paradisebiryani.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send us a message</h3>
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Paradise Biryani - Jhargram. All rights reserved.</p>
+        <p>Made with ❤️ for food lovers</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu after clicking
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for contacting Paradise Biryani! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.dish-card, .menu-category, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
